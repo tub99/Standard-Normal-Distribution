@@ -1,0 +1,25 @@
+{
+  "name": "spline_graph",
+  "version": "1.0.0",
+  "description": "spline graph for probabilistic distrinution",
+  "main": "src/index.html",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "soumya ghosh",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "2.3.2",
+    "jasmine-core": "2.3.2",
+    "jasmine-jquery": "2.1.1",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1"
+  },
+  "dependencies": {
+    "jsxgraph": "^0.99.6",
+    "webpack": "^3.8.1"
+  }
+}
