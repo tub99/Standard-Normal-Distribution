@@ -3,7 +3,10 @@ function Graph() {
         var board = JXG.JSXGraph.initBoard('box', {
             axis: false,
             boundingbox: [-5, 0.5, 5, -0.5],
-            grid: false
+            grid: false,
+            showCopyright: false,
+            showNavigation: false,
+            showZoom: false
         });
 
         xaxis = board.create('axis', [
@@ -29,6 +32,9 @@ function Graph() {
         }], {
             fillcolor: 'blue',
             fillopacity: 0.3
+        });
+        c1.setProperty({
+            fixed: true
         });
         var i1 = board.create('integral', [
             [4.0, 4.0], c1

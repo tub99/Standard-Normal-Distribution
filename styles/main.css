@@ -3,10 +3,15 @@
     height: 500px;
     border: 2px solid black;
     margin-left: 25px;
+    position: absolute;
+    top: 15%;
+    left: 25%;
 }
 
-#choice_box {
-    width: 100px;
-    height: 500px;
-    border: 2px solid black;
+#box_jxgBoard1P29 {
+    display: none
+}
+
+#box_jxgBoard1P27 {
+    display: none
 }
