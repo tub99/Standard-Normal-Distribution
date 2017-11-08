@@ -1,21 +1,20 @@
 <html>
 
-<head>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraph.css">
+        <link rel="stylesheet" href="./styles/main.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraphcore.js"></script>
+        <script type="text/javascript" src="./scripts/js/graph/graph.js"></script>
+    </head>
 
+    <body>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraph.css">
-    <link rel="stylesheet" href="./styles/main.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraphcore.js"></script>
-    <script type="text/javascript" src="./scripts/js/graph/graph.js"></script>
-</head>
+        <div id='box' class='jxgbox'></div>
 
-<body>
-    <div id='box' class='jxgbox'></div>
-
-    <script>
-        var graph = new Graph();
-        graph.render();
-    </script>
-</body>
+        <script>
+            var graph = new Graph();
+            graph.renderGraph({STANDARD_DEVIATION:1, MEAN: 0});
+        </script>
+    </body>
 
 </html>
