@@ -39,22 +39,47 @@ function Graph() {
             });
             return functionGraph;
         },
+        getScrubberCoords = function (e) {
+            var i = 0;
+            var cPos = board.getCoordsTopLeftCorner(e, i),
+                absPos = JXG.getPosition(e, i),
+                dx = absPos[0] - cPos[0],
+                dy = absPos[1] - cPos[1];
+
+            return new JXG.Coords(JXG.COORDS_BY_SCREEN, [dx, dy], board);
+        },
+        attatchEventsToScrubber = function (scrubberPoint) {
+            scrubberPoint.on('drag', function (evt) {
+                console.log(getScrubberCoords(evt, board));
+            })
+            scrubberPoint.on('up', function (evt) {
+                console.log(getScrubberCoords(evt, board));
+            })
+            scrubberPoint.on('down', function (evt) {
+                console.log(getScrubberCoords(evt, board));
+            })
+        },
+        getArea = function () {
+
+        },
+
         generateScrubber = function (curve, scrubberPos) {
             var scrubber = board.create('integral', [
                 [4.0, 4.0], curve
             ], {
                 withLabel: false
             });
+            attatchEventsToScrubber(scrubber);
             return scrubber;
         };
 
     this.renderGraph = function (graphConfigs, axisObj, hasScrubber) {
         // Iniitialize the board on which the graph will be drawn
         initializeBoard(axisObj.axisLimits, false, false, false);
-        if(axisObj.hasXAxis)createXAxis();
-        if(axisObj.hasYAxis)ceateYAxis();
+        if (axisObj.hasXAxis) createXAxis();
+        if (axisObj.hasYAxis) ceateYAxis();
         var functionGrpah = generateFunctionGraph(graphConfigs);
-        if(hasScrubber){
+        if (hasScrubber) {
             generateScrubber(functionGrpah);
         }
     }

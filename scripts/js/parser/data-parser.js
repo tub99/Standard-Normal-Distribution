@@ -16,7 +16,8 @@ function DataParser() {
             cosmetics : {
                  opacity: 0.3,
                  color: ''
-            }
+            },
+            type : 'normal'
            
         }
     };
