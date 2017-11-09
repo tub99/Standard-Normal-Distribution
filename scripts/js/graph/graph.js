@@ -14,18 +14,14 @@ function Graph() {
             xaxis = board.create('axis', [
                 [0, 0],
                 [1, 0]
-            ], {
-                ticks: {
-                    insertTicks: false,
-                    ticksDistance: 1
-                }
-            });
+            ], {grid:false});
         },
         ceateYAxis = function () {
             yaxis = board.create('axis', [
                 [0, 0],
                 [0, 1]
-            ]);
+            ], {grid: false});
+            yaxis.removeAllTicks();
         },
         generateFunctionGraph = function (graphConfigs) {
             var e = Math.E,
@@ -34,10 +30,11 @@ function Graph() {
                 fx = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(e, (-0.5 * (z * z)));
                 return fx;
             }], {
-                fillcolor: 'blue',
-                fillopacity: 0.3
+                fillcolor: 'yellow',
+                fillopacity: 0.3,
+                highlight: false
             });
-            board.create('glider',[-4,0,functionGraph],{name:'start point (-4,0)'});
+           
             return functionGraph;
         },
         getScrubberCoords = function (e) {
@@ -51,36 +48,32 @@ function Graph() {
         },
         attatchEventsToScrubber = function (scrubberPoint) {
             scrubberPoint.on('drag', function (evt) {
-                console.log('Dragging');
-                console.log(getScrubberCoords(evt, board));
+                 if(scrubberPoint.position <= -3.5) {
+                    // returning false or stop event is not working
+                    // hence setting to extreme positions 
+                    scrubberPoint.position = -3.5
+                 } else if(scrubberPoint.position>=3.5) scrubberPoint.position = 3.5
             })
-            // scrubberPoint.on('up', function (evt) {
-            //     console.log(getScrubberCoords(evt, board));
-            // })
-            // scrubberPoint.on('down', function (evt) {
-            //     console.log(getScrubberCoords(evt, board));
-            // })
-              scrubberPoint.on('mousedrag', function (evt) {
-                  console.log('Dragging mouse');
-                console.log(getScrubberCoords(evt, board));
-            });
-            //    scrubberPoint.on('move', function (evt) {
-            //     console.log(getScrubberCoords(evt, board));
-            // });
-        },
+          },
         getArea = function () {
 
         },
 
         generateScrubber = function (curve, scrubberPos) {
-            var scrubber = board.create('integral', [
-                [4.0, 4.0], curve
+            var integralCurve = board.create('integral', [
+                [1, 4.0], curve
             ], {
                 withLabel: false,
-                isDraggable: false
+                isDraggable: false,
+                curveLeft : {
+                    showInfoBox : false
+                },
+                curveRight : {
+                    visible: false
+                }
             });
-            attatchEventsToScrubber(scrubber);
-            return scrubber;
+            attatchEventsToScrubber(integralCurve.curveLeft);
+            return integralCurve;
         };
 
     this.renderGraph = function (graphConfigs, axisObj, hasScrubber) {
