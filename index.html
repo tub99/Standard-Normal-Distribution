@@ -8,7 +8,18 @@
 </head>
 
 <body>
-    <div id='box' class='jxgbox'></div>
+    <div id="container">
+        <div id="leftBox">
+            <span class "leftBoxText">Standard normal distribution</span>
+            <span class "leftBoxText">Mean = 0.0</span>
+            <span class "leftBoxText">Standard Deviation = 1.0</span>
+            <div>
+                <input type="radio" id="contactChoice1" name="SD" value="false">
+                <input type="radio" id="contactChoice2" name="SD" value="true">
+            </div>
+        </div>
+        <div id='box' class='jxgbox'></div>
+    </div>
     <script type="text/javascript" src="./scripts/js/common/ui-handler.js"></script>
     <script type="text/javascript" src="./scripts/js/common/sample-distributor.js"></script>
     <script type="text/javascript" src="./scripts/js/parser/data-parser.js"></script>

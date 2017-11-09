@@ -9,8 +9,30 @@
     position: relative;
     overflow: hidden;
     width: 50%;
-    height: 0;
-    padding-bottom: 25%;
+    height: 60%;
+    /* left: 15% */
+}
+
+#leftBox {
+    width: 20%;
+    height: 60%;
+    background: #EDEDDB;
+    /* left: 15%; */
+    position: relative;
+}
+
+#container {
+    display: -webkit-inline-box;
+    width: 100%;
+    border: 1px solid black;
+    position: relative;
+    top: 25px;
+    /* padding: 25px;
+    margin: 10px; */
+}
+
+.jxgbox {
+    border-width: 0px !important;
 }
 
 #box_jxgBoard1P29 {
@@ -19,4 +41,8 @@
 
 #box_jxgBoard1P27 {
     display: none
+}
+
+.leftBoxText {
+    display: block;
 }

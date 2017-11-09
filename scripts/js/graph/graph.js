@@ -34,7 +34,7 @@ function Graph() {
                 fx = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(e, (-0.5 * (z * z)));
                 return fx;
             }], {
-                fillcolor: 'blue',
+                fillcolor: '#D6E0F5',
                 fillopacity: 0.3
             });
             return functionGraph;
@@ -67,7 +67,8 @@ function Graph() {
             var scrubber = board.create('integral', [
                 [4.0, 4.0], curve
             ], {
-                withLabel: false
+                withLabel: false,
+                fillcolor: '#FFD699',
             });
             attatchEventsToScrubber(scrubber);
             return scrubber;
