@@ -3,7 +3,7 @@ function Graph() {
         initializeBoard = function (axisLimits, showGrid, isNavigable, isZoomable) {
             board = JXG.JSXGraph.initBoard('box', {
                 axis: false,
-                boundingbox: [-5, 0.5, 5, -0.5],
+                boundingbox: [-5, 0.5, 5, -0.1],
                 grid: false,
                 showCopyright: false,
                 showNavigation: false,
@@ -46,13 +46,13 @@ function Graph() {
                 withLabel: false
             });
             return scrubber;
-        }
+        };
 
     this.renderGraph = function (graphConfigs, axisObj, hasScrubber) {
         // Iniitialize the board on which the graph will be drawn
-        initializeBoard();
-        createXAxis();
-        ceateYAxis();
+        initializeBoard(axisObj.axisLimits, false, false, false);
+        if(axisObj.hasXAxis)createXAxis();
+        if(axisObj.hasYAxis)ceateYAxis();
         var functionGrpah = generateFunctionGraph(graphConfigs);
         if(hasScrubber){
             generateScrubber(functionGrpah);

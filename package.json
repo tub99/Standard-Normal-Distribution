@@ -22,6 +22,8 @@
     "jquery-ui": "^1.12.1"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
+    "glob": "^7.1.2",
     "jsxgraph": "^0.99.6",
     "path": "^0.12.7",
     "webpack": "^3.8.1"

@@ -1,20 +1,21 @@
 <html>
 
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraph.css">
-        <link rel="stylesheet" href="./styles/main.css">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraphcore.js"></script>
-        <script type="text/javascript" src="./scripts/js/graph/graph.js"></script>
-    </head>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraph.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraphcore.js"></script>
 
-    <body>
+</head>
 
-        <div id='box' class='jxgbox'></div>
+<body>
 
-        <script>
-            var graph = new Graph();
-            graph.renderGraph({STANDARD_DEVIATION:1, MEAN: 0});
-        </script>
-    </body>
+    <div id='box' class='jxgbox'></div>
+
+    <script type="text/javascript" src="./scripts/js/common/ui-handler.js"></script>
+    <script type="text/javascript" src="./scripts/js/common/sample-distributor.js"></script>
+    <script type="text/javascript" src="./scripts/js/parser/data-parser.js"></script>
+    <script type="text/javascript" src="./scripts/js/graph/graph.js"></script>
+    <script type="text/javascript" src="./scripts/js/graph/graph-manager.js"></script>
+</body>
 
 </html>
