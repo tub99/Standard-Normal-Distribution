@@ -54,8 +54,14 @@ function Graph() {
         createXAxis();
         ceateYAxis();
         var functionGrpah = generateFunctionGraph(graphConfigs);
-        if(hasScrubber){
+        if (hasScrubber) {
             generateScrubber(functionGrpah);
         }
     }
+
+    var resize = function () {
+        board.resizeContainer(board.containerObj.clientWidth, board.containerObj.clientHeight, true);
+        board.fullUpdate();
+    };
+    window.onresize = resize;
 }
