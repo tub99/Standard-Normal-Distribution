@@ -17,9 +17,9 @@ GraphManager.prototype.createGraph = function () {
         }
     });
     var hasScrubber = $('#contactChoice1').is('checked');
-    console.log(hasScrubber);
+    // console.log(hasScrubber);
 
-    graph.renderGraph(graphConfiguration, graphConfiguration.axis, true);
+    graph.renderGraph(graphConfiguration, graphConfiguration.axis, hasScrubber);
 }
 
 var gm = new GraphManager();
