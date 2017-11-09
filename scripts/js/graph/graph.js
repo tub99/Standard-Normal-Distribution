@@ -30,14 +30,9 @@ function Graph() {
                 fx = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(e, (-0.5 * (z * z)));
                 return fx;
             }], {
-<<<<<<< HEAD
-                fillcolor: '#D6E0F5',
-                fillopacity: 0.3
-=======
                 fillcolor: 'yellow',
                 fillopacity: 0.3,
                 highlight: false
->>>>>>> 2392220f50343cd338dce49e7341a00135a12025
             });
            
             return functionGraph;
@@ -69,9 +64,6 @@ function Graph() {
                 [1, 4.0], curve
             ], {
                 withLabel: false,
-<<<<<<< HEAD
-                fillcolor: '#FFD699',
-=======
                 isDraggable: false,
                 curveLeft : {
                     showInfoBox : false
@@ -79,7 +71,6 @@ function Graph() {
                 curveRight : {
                     visible: false
                 }
->>>>>>> 2392220f50343cd338dce49e7341a00135a12025
             });
             attatchEventsToScrubber(integralCurve.curveLeft);
             return integralCurve;
