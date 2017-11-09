@@ -83,4 +83,9 @@ function Graph() {
             generateScrubber(functionGrpah);
         }
     }
+    var resize = function () {
+        board.resizeContainer(board.containerObj.clientWidth, board.containerObj.clientHeight, true);
+        board.fullUpdate();
+    };
+    window.onresize = resize;
 }

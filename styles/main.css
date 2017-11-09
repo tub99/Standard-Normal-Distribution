@@ -1,11 +1,16 @@
 #box {
-    width: 500px;
+    /* width: 500px;
     height: 500px;
     border: 2px solid black;
     margin-left: 25px;
     position: absolute;
     top: 15%;
-    left: 25%;
+    left: 25%; */
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    height: 0;
+    padding-bottom: 25%;
 }
 
 #box_jxgBoard1P29 {
