@@ -7,18 +7,30 @@ function DataParser() {
         return {
             STANDARD_DEVIATION: 1,
             MEAN: 0,
-            
+
             axis: {
                 axisLimits: [-5, 0.5, 5, -0.1],
                 hasXAxis: true,
                 hasYAxis: true
             },
-            cosmetics : {
-                 opacity: 0.3,
-                 color: ''
+            graph: {
+                cosmetics: {
+                    opacity: 0.3,
+                    color: 'yellow',
+                    dualColor: ''
+                         
+                },
+                type : 'normal',
+                area: {
+                    extremeties : [-3.5, 3.5],
+                    color: '',
+                    scrubberColor: '',
+                    scrubberPos : [1, 4.0]
+                }
+                
             },
-            type : 'normal'
-           
+
+
         }
     };
 
