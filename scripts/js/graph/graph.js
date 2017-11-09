@@ -37,6 +37,7 @@ function Graph() {
                 fillcolor: 'blue',
                 fillopacity: 0.3
             });
+            board.create('glider',[-4,0,functionGraph],{name:'start point (-4,0)'});
             return functionGraph;
         },
         getScrubberCoords = function (e) {
@@ -50,14 +51,22 @@ function Graph() {
         },
         attatchEventsToScrubber = function (scrubberPoint) {
             scrubberPoint.on('drag', function (evt) {
+                console.log('Dragging');
                 console.log(getScrubberCoords(evt, board));
             })
-            scrubberPoint.on('up', function (evt) {
+            // scrubberPoint.on('up', function (evt) {
+            //     console.log(getScrubberCoords(evt, board));
+            // })
+            // scrubberPoint.on('down', function (evt) {
+            //     console.log(getScrubberCoords(evt, board));
+            // })
+              scrubberPoint.on('mousedrag', function (evt) {
+                  console.log('Dragging mouse');
                 console.log(getScrubberCoords(evt, board));
-            })
-            scrubberPoint.on('down', function (evt) {
-                console.log(getScrubberCoords(evt, board));
-            })
+            });
+            //    scrubberPoint.on('move', function (evt) {
+            //     console.log(getScrubberCoords(evt, board));
+            // });
         },
         getArea = function () {
 
@@ -67,7 +76,8 @@ function Graph() {
             var scrubber = board.create('integral', [
                 [4.0, 4.0], curve
             ], {
-                withLabel: false
+                withLabel: false,
+                isDraggable: false
             });
             attatchEventsToScrubber(scrubber);
             return scrubber;
