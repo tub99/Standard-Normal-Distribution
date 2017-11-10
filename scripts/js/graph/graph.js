@@ -55,10 +55,13 @@ function Graph() {
             return new JXG.Coords(JXG.COORDS_BY_SCREEN, [dx, dy], board);
         },
         generateLabels = function (labelObj) {
-            var x = labelObj.presentValue;
-            var leftAreaLabel = board.create('text', [x - 1, 0.1, labelObj.leftArea.toString()]),
-                rightAreaLabel = board.create('text', [x + 1, 0.1, labelObj.rightArea.toString()]),
-                xLabel = board.create('text', [x, -0.05, labelObj.presentValue.toString()]);
+            var x = +(labelObj.presentValue);
+            var leftAreaLabel = board.create('text', [x - 1, 0.1,'']),
+                rightAreaLabel = board.create('text', [x + 1, 0.1, '']),
+                xLabel = board.create('text', [x, -0.05, '']);
+                leftAreaLabel.setLabel(labelObj.leftArea.toString());
+                rightAreaLabel.setLabel(labelObj.rightArea.toString());
+                xLabel.setLabel(labelObj.presentValue.toString());
             return {
                 leftLabel: leftAreaLabel,
                 rightLabel: rightAreaLabel,
@@ -81,13 +84,14 @@ function Graph() {
             refGlider2.on('drag', function (evt) {
                 scrubberPoint.position = refGlider2.position;
                 let area = getArea(scrubberPoint.position);
+                var rtAreaLabelPos = refGlider2.position + 1;
                 // Updating Labels with drag
-                labels.leftLabel.setPosition(JXG.COORDS_BY_USER,[refGlider2.position -0.5,labels.leftLabel.Y()]);
-                labels.leftLabel.setLabel(area.rightArea.toString());
-                labels.rightLabel.setPosition(JXG.COORDS_BY_USER,[refGlider2.position + 0.5, labels.rightLabel.Y()]);
+                labels.leftLabel.setPosition(JXG.COORDS_BY_USER,[refGlider2.position- 1,labels.leftLabel.Y()]);
+                labels.leftLabel.setLabel(area.leftArea.toString());
+                labels.rightLabel.setPosition(JXG.COORDS_BY_USER,[rtAreaLabelPos, labels.rightLabel.Y()]);
                 labels.rightLabel.setLabel(area.rightArea.toString());
                 labels.xLabel.setPosition(JXG.COORDS_BY_USER,[refGlider2.position, -0.05]);
-                labels.xLabel.setLabel(refGlider2.position.toString());
+                labels.xLabel.setLabel(refGlider2.position.toFixed(4).toString());
                 // Restricting user drag beyond extremes
                 if (refGlider2.position <= extremeties[0]) {
                     // returning false or stop event is not working
