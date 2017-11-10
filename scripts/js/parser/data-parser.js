@@ -22,7 +22,7 @@ function DataParser() {
                 },
                 type: 'normal',
                 area: {
-
+                    spacing: 0.2,
                     color: '',
                     scrubberColor: '',
                     scrubber: {

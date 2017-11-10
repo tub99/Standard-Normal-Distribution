@@ -15,8 +15,12 @@ function Graph() {
                 [0, 0],
                 [1, 0]
             ], {
-                grid: false
+                grid: false,
+                ticks: {
+                    drawZero: true
+                }
             });
+
         },
         ceateYAxis = function () {
             yaxis = board.create('axis', [
@@ -50,30 +54,50 @@ function Graph() {
 
             return new JXG.Coords(JXG.COORDS_BY_SCREEN, [dx, dy], board);
         },
+        generateLabels = function (labelObj) {
+            var x = labelObj.presentValue;
+            var leftAreaLabel = board.create('text', [x - 1, 0.1, labelObj.leftArea.toString()]),
+                rightAreaLabel = board.create('text', [x + 1, 0.1, labelObj.rightArea.toString()]),
+                xLabel = board.create('text', [x, -0.05, labelObj.presentValue.toString()]);
+            return {
+                leftLabel: leftAreaLabel,
+                rightLabel: rightAreaLabel,
+                xLabel: xLabel
+            };
+
+        },
         getArea = function (x) {
-            // TODO: get val from configs
+            // TODO: get val from configs   
             var sd = 1;
             var areaFirstHalf = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(Math.E, (-0.5 * (x * x))),
                 areaSecondHalf = 1 - areaFirstHalf;
             return {
-                presentValue: x,
-                leftArea: areaFirstHalf,
-                rightArea: areaSecondHalf
+                presentValue: x.toFixed(4),
+                leftArea: areaFirstHalf.toFixed(4),
+                rightArea: areaSecondHalf.toFixed(4)
             };
         },
-        attatchEventsToScrubber = function (scrubberPoint, refGlider2,  extremeties) {
+        attatchEventsToScrubber = function (scrubberPoint, refGlider2, extremeties, labels) {
             refGlider2.on('drag', function (evt) {
                 scrubberPoint.position = refGlider2.position;
                 let area = getArea(scrubberPoint.position);
-                //console.log(area);
-                if (refGlider2.position <=  extremeties[0]) {
+                // Updating Labels with drag
+                labels.leftLabel.setPosition(JXG.COORDS_BY_USER,[refGlider2.position -0.5,labels.leftLabel.Y()]);
+                labels.leftLabel.setLabel(area.rightArea.toString());
+                labels.rightLabel.setPosition(JXG.COORDS_BY_USER,[refGlider2.position + 0.5, labels.rightLabel.Y()]);
+                labels.rightLabel.setLabel(area.rightArea.toString());
+                labels.xLabel.setPosition(JXG.COORDS_BY_USER,[refGlider2.position, -0.05]);
+                labels.xLabel.setLabel(refGlider2.position.toString());
+                // Restricting user drag beyond extremes
+                if (refGlider2.position <= extremeties[0]) {
                     // returning false or stop event is not working
                     // hence setting to extreme positions 
-                    refGlider2.position = scrubberPoint.position =  extremeties[0];
-                } else if (refGlider2.position >=  extremeties[1]) {
-                     refGlider2.position = scrubberPoint.position =  extremeties[1];
+                    refGlider2.position = scrubberPoint.position = extremeties[0];   
+                } else if (refGlider2.position >= extremeties[1]) {
+                    refGlider2.position = scrubberPoint.position = extremeties[1];
+                    
                 }
-                   
+
             })
         },
 
@@ -86,7 +110,8 @@ function Graph() {
                     withLabel: false,
                     isDraggable: false,
                     curveLeft: {
-                        showInfoBox: false
+                        showInfoBox: false,
+                        visible: false
                     },
                     curveRight: {
                         visible: false
@@ -97,12 +122,22 @@ function Graph() {
             // TODO : draw referrence scrubber
             var scrubberRefLine = BOARD.create('functiongraph', [function (x) {
                 return scrubber.scrubberYPos;
-            }]);
+            }], {
+                visible: false
+            });
             var refGlider = BOARD.create('glider', [limits[0], limits[1], scrubberRefLine]);
             //Draw scrubber Line
-            var line2 = BOARD.create("line", [integralCurve.curveLeft, [function(){
-                return integralCurve.curveLeft.X()}, function(){return integralCurve.curveLeft.Y()+0.4}]], {color: 'orange'});
-            attatchEventsToScrubber(integralCurve.curveLeft, refGlider, scrubber.extremeties);
+            var line2 = BOARD.create("line", [integralCurve.curveLeft, [function () {
+                    return integralCurve.curveLeft.X()
+                }, function () {
+                    return integralCurve.curveLeft.Y() + 0.4
+                }]], {
+                    color: 'orange'
+                }),
+                initX = integralCurve.curveLeft.position,
+                areaInfo = getArea(initX),
+                labels = generateLabels(areaInfo);
+            attatchEventsToScrubber(integralCurve.curveLeft, refGlider, scrubber.extremeties, labels);
             window.integral = integralCurve;
             return integralCurve;
         };
