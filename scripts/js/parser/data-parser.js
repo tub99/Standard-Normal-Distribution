@@ -18,16 +18,21 @@ function DataParser() {
                     opacity: 0.3,
                     color: 'yellow',
                     dualColor: ''
-                         
+
                 },
-                type : 'normal',
+                type: 'normal',
                 area: {
-                    extremeties : [-3.5, 3.5],
+
                     color: '',
                     scrubberColor: '',
-                    scrubberPos : [1, 4.0]
+                    scrubber: {
+                        extremeties: [-3.5, 3.5],
+                        scrubberLimits: [1, 4.0],
+                        scrubberYPos: 0.3
+                    }
+
                 }
-                
+
             },
 
 

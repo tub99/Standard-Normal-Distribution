@@ -31,13 +31,13 @@ function Graph() {
             var e = Math.E,
                 sd = graphConfigs.STANDARD_DEVIATION || 1,
                 functionGraph = board.create('functiongraph', [function (z) {
-                fx = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(e, (-0.5 * (z * z)));
-                return fx;
-            }], {
-                fillcolor: graphConfigs.graph.cosmetics.color,
-                fillopacity: graphConfigs.graph.cosmetics.opacity,
-                highlight: false
-            });
+                    fx = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(e, (-0.5 * (z * z)));
+                    return fx;
+                }], {
+                    fillcolor: graphConfigs.graph.cosmetics.color,
+                    fillopacity: graphConfigs.graph.cosmetics.opacity,
+                    highlight: false
+                });
 
             return functionGraph;
         },
@@ -56,49 +56,69 @@ function Graph() {
             var areaFirstHalf = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(Math.E, (-0.5 * (x * x))),
                 areaSecondHalf = 1 - areaFirstHalf;
             return {
-                presentValue : x,
+                presentValue: x,
                 leftArea: areaFirstHalf,
                 rightArea: areaSecondHalf
             };
         },
-        attatchEventsToScrubber = function (scrubberPoint) {
-            scrubberPoint.on('drag', function (evt) {
+        attatchEventsToScrubber = function (scrubberPoint, refGlider2,  extremeties) {
+            refGlider2.on('drag', function (evt) {
+                scrubberPoint.position = refGlider2.position;
                 let area = getArea(scrubberPoint.position);
-                console.log(area);
-                if (scrubberPoint.position <= -3.5) {
+                //console.log(area);
+                if (refGlider2.position <=  extremeties[0]) {
                     // returning false or stop event is not working
                     // hence setting to extreme positions 
-                    scrubberPoint.position = -3.5
-                } else if (scrubberPoint.position >= 3.5) scrubberPoint.position = 3.5
+                    refGlider2.position = scrubberPoint.position =  extremeties[0];
+                } else if (refGlider2.position >=  extremeties[1]) {
+                     refGlider2.position = scrubberPoint.position =  extremeties[1];
+                }
+                   
             })
         },
 
 
-        generateScrubber = function (curve, scrubberPos) {
-            var integralCurve = board.create('integral', [
-               scrubberPos, curve
-            ], {
-                withLabel: false,
-                isDraggable: false,
-                curveLeft: {
-                    showInfoBox: false
-                },
-                curveRight: {
-                    visible: false
-                }
-            });
-            attatchEventsToScrubber(integralCurve.curveLeft);
+        generateScrubber = function (curve, scrubber) {
+            var limits = scrubber.scrubberLimits,
+                integralCurve = board.create('integral', [
+                    scrubber.scrubberLimits, curve
+                ], {
+                    withLabel: false,
+                    isDraggable: false,
+                    curveLeft: {
+                        showInfoBox: false
+                    },
+                    curveRight: {
+                        visible: false
+                    }
+
+                });
+
+            // TODO : draw referrence scrubber
+            var scrubberRefLine = BOARD.create('functiongraph', [function (x) {
+                return scrubber.scrubberYPos;
+            }]);
+            var refGlider = BOARD.create('glider', [limits[0], limits[1], scrubberRefLine]);
+            //Draw scrubber Line
+            var line2 = BOARD.create("line", [integralCurve.curveLeft, [function(){
+                return integralCurve.curveLeft.X()}, function(){return integralCurve.curveLeft.Y()+0.4}]], {color: 'orange'});
+            attatchEventsToScrubber(integralCurve.curveLeft, refGlider, scrubber.extremeties);
+            window.integral = integralCurve;
             return integralCurve;
         };
-
+    this.getBoard = function () {
+        return board;
+    }
     this.renderGraph = function (graphConfigs, axisObj, hasScrubber) {
         // Iniitialize the board on which the graph will be drawn
         initializeBoard(axisObj.axisLimits, false, false, false);
+        // TODO : REMOVE
+        window.BOARD = this.getBoard();
         if (axisObj.hasXAxis) createXAxis();
         if (axisObj.hasYAxis) ceateYAxis();
         var functionGrpah = generateFunctionGraph(graphConfigs);
         if (hasScrubber) {
-            generateScrubber(functionGrpah, graphConfigs.graph.area.scrubberPos);
+            generateScrubber(functionGrpah, graphConfigs.graph.area.scrubber);
         }
     }
     var resize = function () {
