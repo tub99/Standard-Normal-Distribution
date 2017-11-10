@@ -75,9 +75,9 @@ function Graph() {
             var areaFirstHalf = (1 / (Math.sqrt(2 * Math.PI) * sd)) * Math.pow(Math.E, (-0.5 * (x * x))),
                 areaSecondHalf = 1 - areaFirstHalf;
             return {
-                presentValue: x.toFixed(4),
-                leftArea: areaSecondHalf.toFixed(4),
-                rightArea: areaFirstHalf.toFixed(4)
+                presentValue: x.toFixed(2),
+                leftArea: x < 0 ? areaFirstHalf.toFixed(4) : areaSecondHalf.toFixed(4),
+                rightArea: x < 0 ? areaSecondHalf.toFixed(4) : areaFirstHalf.toFixed(4)
             };
         },
         attatchEventsToScrubber = function (scrubberPoint, refGlider2, extremeties, labels) {
@@ -98,15 +98,15 @@ function Graph() {
                     // hence setting to extreme positions 
                     refGlider2.position = scrubberPoint.position = extremeties[0];
                     labels.xLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[0], -0.05]);
-                    labels.rightLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[0]+0.5, labels.rightLabel.Y()]);
-                    labels.leftLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[0]-0.5, labels.rightLabel.Y()]);
-                    //labels.xLabel.setLabel(extremeties[0]);
+                    labels.rightLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[0] + 0.5, labels.rightLabel.Y()]);
+                    labels.leftLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[0] - 0.5, labels.rightLabel.Y()]);
+                    labels.xLabel.setLabel(extremeties[0].toString());
                 } else if (refGlider2.position >= extremeties[1]) {
                     refGlider2.position = scrubberPoint.position = extremeties[1];
                     labels.xLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[1], -0.05]);
-                    labels.rightLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[1]+0.5, labels.rightLabel.Y()]);
-                    labels.leftLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[1]-0.5, labels.rightLabel.Y()]);
-                    //labels.xLabel.setLabel(extremeties[1]);
+                    labels.rightLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[1] + 0.5, labels.rightLabel.Y()]);
+                    labels.leftLabel.setPosition(JXG.COORDS_BY_USER, [extremeties[1] - 0.5, labels.rightLabel.Y()]);
+                    labels.xLabel.setLabel(extremeties[1].toString());
                 }
 
             })
