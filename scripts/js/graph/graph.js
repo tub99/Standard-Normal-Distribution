@@ -80,11 +80,16 @@ function Graph() {
                 rightArea: x < 0 ? areaSecondHalf.toFixed(4) : areaFirstHalf.toFixed(4)
             };
         },
-        attatchEventsToScrubber = function (scrubberPoint, refGlider2, extremeties, labels) {
+        attatchEventsToScrubber = function (scrubberPoint, refGlider2, extremeties, labels, scrubberLine) {
             refGlider2.on('drag', function (evt) {
                 scrubberPoint.position = refGlider2.position;
                 let area = getArea(scrubberPoint.position);
                 var rtAreaLabelPos = refGlider2.position + 1;
+                // Update Scrubber Handle
+                scrubberLine.point1.setPosition(JXG.COORDS_BY_USER,
+                 [refGlider2.position, scrubberLine.point1.Y()]);
+                 scrubberLine.point2.setPosition(JXG.COORDS_BY_USER,
+                 [refGlider2.position,scrubberLine.point2.Y()]);
                 // Updating Labels with drag
                 labels.leftLabel.setPosition(JXG.COORDS_BY_USER, [refGlider2.position - 1, labels.leftLabel.Y()]);
                 labels.leftLabel.setLabel(area.leftArea.toString());
@@ -141,18 +146,29 @@ function Graph() {
                 highlight: false
             });
             //Draw scrubber Line
-            var line2 = BOARD.create("line", [integralCurve.curveLeft, [function () {
-                    return integralCurve.curveLeft.X()
-                }, function () {
-                    return integralCurve.curveLeft.Y() + 0.4
-                }]], {
-                    color: 'orange',
-                    highlight: false
-                }),
-                initX = integralCurve.curveLeft.position,
+            // var line2 = BOARD.create("line", [integralCurve.curveLeft, [function () {
+            //         return integralCurve.curveLeft.X()
+            //     }, function () {
+            //         return integralCurve.curveLeft.Y() + 0.4
+            //     }]], {
+            //         color: 'orange',
+            //         highlight: false
+            //     }),
+            var initX = integralCurve.curveLeft.position,
+
                 areaInfo = getArea(initX),
-                labels = generateLabels(areaInfo);
-            attatchEventsToScrubber(integralCurve.curveLeft, refGlider, scrubber.extremeties, labels);
+                scrubberLine = BOARD.create('line', [
+                    [initX, scrubber.scrubberY1],
+                    [initX, scrubber.scrubberY2]
+                ], {
+                    straightFirst: false,
+                    straightLast: false,
+                    strokeWidth: scrubber.scrubberWidth,
+                    color: scrubber.scrubberColor
+                });
+                window.SCRUBBER = scrubberLine;
+            labels = generateLabels(areaInfo);
+            attatchEventsToScrubber(integralCurve.curveLeft, refGlider, scrubber.extremeties, labels,scrubberLine);
             window.integral = integralCurve;
             return integralCurve;
         };

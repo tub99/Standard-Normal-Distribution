@@ -17,7 +17,7 @@ function DataParser() {
                 cosmetics: {
                     opacity: 0.3,
                     color: 'yellow',
-                    dualColor: ''
+                    dualColor: 'orange'
 
                 },
                 type: 'normal',
@@ -28,7 +28,11 @@ function DataParser() {
                     scrubber: {
                         extremeties: [-3.5, 3.5],
                         scrubberLimits: [1, 4.0],
-                        scrubberYPos: 0.3
+                        scrubberYPos: 0.3,
+                        scrubberY1: 0.45,
+                        scrubberY2: -0.02,
+                        scrubberWidth: 2,
+                        scrubberColor: 'orange'
                     }
 
                 }

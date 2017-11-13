@@ -16,7 +16,7 @@
 #leftBox {
     width: 20%;
     height: 60%;
-    background: #EDEDDB;
+    background: #ECEDDB;
     /* left: 15%; */
     position: relative;
 }
@@ -33,4 +33,28 @@
 
 .jxgbox {
     border-width: 0px !important;
+}
+.leftBoxText{
+    display: block;
+    position: relative;
+    top: 30px;
+    text-align: center;
+    margin: 5px;
+}
+.radioContainer{
+    position: relative;
+    text-align: center;
+    top: 200px;
+}
+div#box_jxgBoard26970T39Label {
+    width: 50px;
+    border: 1px solid gray;
+    text-align: center;
+    border-radius: 10px;
+}
+div#box_jxgBoard26970T40Label {
+    width: 50px;
+    border: 1px solid gray;
+    text-align: center;
+    border-radius: 10px;
 }
