@@ -1,60 +1,186 @@
-#box {
-    /* width: 500px;
-    height: 500px;
-    border: 2px solid black;
-    margin-left: 25px;
-    position: absolute;
-    top: 15%;
-    left: 25%; */
-    position: relative;
-    overflow: hidden;
-    width: 50%;
-    height: 60%;
-    /* left: 15% */
-}
-
-#leftBox {
-    width: 20%;
-    height: 60%;
-    background: #ECEDDB;
-    /* left: 15%; */
-    position: relative;
-}
-
+body, button, input{font-family: 'Open Sans', sans-serif; font-size:14px;}
 #container {
-    display: -webkit-inline-box;
-    width: 100%;
-    border: 1px solid black;
+    border: 1px solid #999;
     position: relative;
-    top: 25px;
-    /* padding: 25px;
-    margin: 10px; */
+    display:block;
+    margin:0 auto;
+	width:733px;
 }
+#leftBox {
+    width:190px;
+    background: #ededdc;
+    position: relative;
+	min-height:270px;
+	float:left;
+	font-size:12px;
+	font-style:italic;
+	text-align:left;
+}
+#Box {
+    position: relative;
+   	width:513px;
+    min-height: 270px;
+    float: right;
+    margin: 0 15px;
+	
+}
+.clearfix {
+    overflow: auto;
+}
+.form-radio-label{ width:32px; display:inline-block; text-align:center; cursor: pointer;}
+.form-radio-input{ margin:0 0 7px 0;}
+
+
+.JXGtextleft {
+    width: 50px;
+    height:14px;
+    background: #fff;
+    position: relative;
+    border-radius: 0 10px 10px 0;
+	padding:2px;
+	text-align:center;
+    color: #3365cc !important;
+    border: 1px solid #cccccc;
+    font-weight: bold;
+}
+
+.JXGtextleft:before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 0px;
+    width: 0;
+    height: 0;
+    border-top:9px solid transparent;
+    border-right:9px solid #fff;
+    border-bottom:9px solid transparent;
+	z-index: 1;
+}
+.JXGtextleft:after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 0px;
+    width: 0;
+    height: 0;
+    border-top:9px solid transparent;
+    border-right:9px solid #cccccc;
+    border-bottom:9px solid transparent;
+}
+.JXGtextright{
+    width: 50px;
+    height:14px;
+    background: #fff;
+    position: relative;
+    border-radius: 10px 0px 0px 10px;
+	padding:2px;
+	text-align:center;
+    color:#f99902 !important;
+	border: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.JXGtextright:before {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 0px;
+    width: 0;
+    height: 0;
+    border-top:9px solid transparent;
+    border-left:9px solid #fff;
+    border-bottom:9px solid transparent;
+	z-index: 1;
+}
+.JXGtextright:after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 0px;
+    width: 0;
+    height: 0;
+    border-top:9px solid transparent;
+    border-left:9px solid #ccc;
+    border-bottom:9px solid transparent;
+}
+.JXGtextbottom {
+    width: 50px;
+    height:14px;
+    background: #fff;
+    position: relative;
+	padding:2px;
+    text-align:center;
+    color: #f99902 !important;
+    font-weight: bold;
+    bottom: 3px !important;
+    top: inherit !important;
+}
+
+
 
 .jxgbox {
     border-width: 0px !important;
 }
-.leftBoxText{
+
+.leftBoxText {
     display: block;
     position: relative;
-    top: 30px;
-    text-align: center;
-    margin: 5px;
+    text-align: left;
+    padding:22px 0 0 12px;
+	margin:0;
+	color:#363635;
 }
-.radioContainer{
-    position: relative;
-    text-align: center;
-    top: 200px;
+.leftBoxText2{padding:26px 0 0 12px;}
+.leftBoxText3{padding:3px 0 0 12px;}
+.radioContainer {
+    position: absolute;
+    text-align: left;
+    bottom:4px;
+	left:8px;
 }
+
+#box_jxgBoard6444T41Label {}
+
+#box_jxgBoard14680P35 {
+    background-image:
+}
+
 div#box_jxgBoard26970T39Label {
     width: 50px;
     border: 1px solid gray;
     text-align: center;
     border-radius: 10px;
 }
+
 div#box_jxgBoard26970T40Label {
     width: 50px;
     border: 1px solid gray;
     text-align: center;
     border-radius: 10px;
 }
+
+div#box_jxgBoard26970T39Label {
+    width: 50px;
+    border: 1px solid gray;
+    text-align: center;
+    border-radius: 10px;
+}
+
+div#box_jxgBoard26970T40Label {
+    width: 50px;
+    border: 1px solid gray;
+    text-align: center;
+    border-radius: 10px;
+}
+
+@media (min-width: 580px) and (max-width: 1023px) {
+    #container {
+        width:580px;
+    }
+    #leftBox {
+        width:160px;
+    }
+    #Box {
+           width:390px;
+    }
+  }

@@ -1,31 +1,46 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraph.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraph.css">  
     <link rel="stylesheet" href="./styles/main.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraphcore.js"></script>
+    <!--<link rel="stylesheet" href="./styles/jsxgraph.css">
+    <script type="text/javascript" src="./scripts/lib/jsxgraph.js"></script>
+    <script type="text/javascript" src="./scripts/lib/jquery-3.2.1.js"></script>-->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i" rel="stylesheet">
 
 </head>
 
 <body>
-    <div id="container">
+    <div id="container" class="clearfix">
         <div id="leftBox">
-            <span class "leftBoxText">Standard normal distribution</span>
-            <span class "leftBoxText">Mean = 0.0</span>
-            <span class "leftBoxText">Standard Deviation = 1.0</span>
-            <div>
-                <input type="radio" class="meanRadio" id="contactChoice1" name="SD" value="false" checked>
-                <input type="radio" class="meanRadio" id="contactChoice2" name="SD" value="true">
-            </div>
-        </div>
-        <div id='box' class='jxgbox'></div>
-    </div>
-    <script type="text/javascript" src="./scripts/js/common/ui-handler.js"></script>
-    <script type="text/javascript" src="./scripts/js/common/sample-distributor.js"></script>
-    <script type="text/javascript" src="./scripts/js/parser/data-parser.js"></script>
-    <script type="text/javascript" src="./scripts/js/graph/graph.js"></script>
-    <script type="text/javascript" src="./scripts/js/graph/graph-manager.js"></script>
+            <p class="leftBoxText">Standard normal distribution</p>
+            <p class="leftBoxText leftBoxText2">Mean = 0.0</p>
+            <p class="leftBoxText leftBoxText3">Standard Deviation = 1.0</p>
+            <div class="radioContainer">
+               
+               
+				  <label class="form-radio-label">
+					<input class="form-radio-input meanRadio" type="radio" id="contactChoice1" name="SD" value="false" checked value="option1">
+					<img src="./images/img-1.png" alt="">
+				  </label>
+              	  <label class="form-radio-label">
+					<input class="form-radio-input meanRadio" type="radio" id="contactChoice2" name="SD" value="true"  value="option2">
+					<img src="./images/img-2.png" alt="">
+				  </label>
+</div>
+</div>
+
+<div id='box' class='jxgbox'></div>
+
+
+</div>
+<script type="text/javascript" src="./scripts/js/common/ui-handler.js"></script>
+<script type="text/javascript" src="./scripts/js/common/sample-distributor.js"></script>
+<script type="text/javascript" src="./scripts/js/parser/data-parser.js"></script>
+<script type="text/javascript" src="./scripts/js/graph/graph.js"></script>
+<script type="text/javascript" src="./scripts/js/graph/graph-manager.js"></script>
 </body>
 
 </html>
